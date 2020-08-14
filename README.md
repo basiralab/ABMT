@@ -76,7 +76,7 @@ Holmes, Avram J., et al. &quot;Brain Genomics Superstruct Project initial data r
 
 # Please cite the following paper when using ABMT:
 
-@article{nebli2020, 
+@article{nebli2020, <br/>
  title={Adversarial Brain Multiplex Prediction From a Single Brain Network with Application to Gender Fingerprinting},<br/>
  author={Nebli, Ahmed and Rekik, Islem},<br/>
  journal={Medical Image Analysis},<br/>
