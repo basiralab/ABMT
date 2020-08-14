@@ -73,7 +73,8 @@ Lisowska, Anna, et al. &quot;Joint pairing and structured mapping of convolution
 
 # Please cite the following paper when using ABMT:
 
-@article{nebli2020, titleAdversarial Brain Multiplex Prediction From a Single Brain Network with Application to Gender Fingerprinting},<br/>
+@article{nebli2020, 
+ title={Adversarial Brain Multiplex Prediction From a Single Brain Network with Application to Gender Fingerprinting},<br/>
  author={Nebli, Ahmed and Rekik, Islem},<br/>
  journal={Medical Image Analysis},<br/>
  volume={??},<br/>
