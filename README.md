@@ -28,7 +28,11 @@ Scikit-learn: [https://scikit-learn.org/stable/install.html](https://scikit-lear
 
 ABMT is coded in Python 3. GPU is not a requirement to run the code. However, for faster training it is mandatory to install TensorFlow-gpu.
 
-To run ABMT please run main.py. If you require only to run a demo without training, please choose the configuration: &quot;No training / Yes testing&quot; when asked to do so. For a complete training and testing please choose the configuration &quot;Yes training / Yes testing&quot;. If you are using the code for the first time please run training at least for one epoch to configure the weights.
+To run ABMT please run main.py. If you require only to run a demo without training, please choose the configuration: &quot;No training / Yes testing&quot; when asked to do so. 
+
+For a complete training and testing please choose the configuration &quot;Yes training / Yes testing&quot;. 
+
+If you are using the code for the first time please run training at least for one epoch to configure the weights.
 
 #
 
@@ -39,12 +43,12 @@ We simulated random graph dataset, each representing a brain network (source and
 
 To train and evaluate ABMT code for classification on other datasets, you need to upload your data as a structure including:
 
-• A tensor of size (N × m ×m) containing N symmetric matrices each one representing a subject graph of size (m × m). N denotes the number of subjects and m denotes the number of nodes (regions of interest in our case).
- • A (N ×1) label list including the label of each subject in the dataset (male or female).
+â€¢ A tensor of size (N Ã— m Ã—m) containing N symmetric matrices each one representing a subject graph of size (m Ã— m). N denotes the number of subjects and m denotes the number of nodes (regions of interest in our case).
+ â€¢ A (N Ã—1) label list including the label of each subject in the dataset (male or female).
 
 The ABMT outputs are:
 
-• A matrix of size (N ×m × m) storing the network of the predicted subjects.
+â€¢ A matrix of size (N Ã—m Ã— m) storing the network of the predicted subjects.
 
 # Example Results
 
@@ -69,16 +73,15 @@ Lisowska, Anna, et al. &quot;Joint pairing and structured mapping of convolution
 
 # Please cite the following paper when using ABMT:
 
-@article{nebli2020, titleAdversarial Brain Multiplex Prediction From a Single Brain Network with Application to Gender Fingerprinting},
- author={Nebli, Ahmed and Rekik, Islem},
- journal={Medical Image Analysis},
- volume={??},
- pages={???},
- year={2020},
- publisher={Elsevier}
- }
+@article{nebli2020, titleAdversarial Brain Multiplex Prediction From a Single Brain Network with Application to Gender Fingerprinting},<br/>
+ author={Nebli, Ahmed and Rekik, Islem},<br/>
+ journal={Medical Image Analysis},<br/>
+ volume={??},<br/>
+ pages={???},<br/>
+ year={2020},<br/>
+ publisher={Elsevier}<br/>
+ }<br/>
 
-Paper link on ResearchGate: ??
 
 # License
 
