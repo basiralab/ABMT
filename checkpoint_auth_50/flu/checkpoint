@@ -1,0 +1,6 @@
+model_checkpoint_path: "g2g.model-84"
+all_model_checkpoint_paths: "g2g.model-66"
+all_model_checkpoint_paths: "g2g.model-74"
+all_model_checkpoint_paths: "g2g.model-75"
+all_model_checkpoint_paths: "g2g.model-83"
+all_model_checkpoint_paths: "g2g.model-84"
