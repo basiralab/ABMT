@@ -182,7 +182,7 @@ class graph2graph(object):
 
         print("[Sample] d_loss: {:.8f}, g_loss: {:.8f}".format(d_loss, g_loss))
 
-    def train(self, args):
+    def demo(self, args):
         second_view = np.zeros((1, self.n_regions, self.n_regions, 1))
         tab = np.zeros((1))
         """Train pix2pix"""
@@ -220,91 +220,6 @@ class graph2graph(object):
             errC = 0
             best_dis = 2
 
-
-            for epoch in range(args.epoch):
-                batch_idxs = min(len(X_train), args.train_size) // self.batch_size
-                for idx in range(0, batch_idxs):
-
-                    batch = X_train[idx * self.batch_size:(idx + 1) * self.batch_size]
-                    batch_graphs = np.array(batch)
-                    first_upper = batch_graphs[:, :, :, 0:1]
-                    second_upper = batch_graphs[:, :, :, 1:2]
-                    view1 = first_upper
-                    first_upper = np.reshape(first_upper, (batch_shape, self.n_regions, self.n_regions))
-                    for i in range(batch_shape):
-                        first_upper_1 = first_upper[i:i + 1, :, :]
-                        first_upper_1 = np.reshape(first_upper_1, (self.n_regions, self.n_regions))
-                        first_upper_1 = first_upper_1[np.triu_indices(self.n_regions, k=1)]
-                        first_upper_1 = np.reshape(first_upper_1, (1, int(self.vectorized_graph)))
-                        first_upper_1 = np.concatenate((first_upper_1, first_upper_1), axis=0)
-
-                    labels_idxx = Y_train
-                    label_idx = labels_idxx[idx * self.batch_size:(idx + 1) * self.batch_size]
-                    multi = self.sess.run([self.latent], feed_dict={self.real_data: batch_graphs})
-                    multi = np.absolute(multi)
-                    multi = np.reshape(multi, (batch_shape, self.n_regions))
-
-                    v1_upper = self.sess.run([self.upper_vector_A], feed_dict={self.real_A: view1})
-                    v1_upper = np.reshape(v1_upper, (batch_shape, self.vectorized_graph))
-
-                    view2 = self.sess.run([self.fake_B], feed_dict={self.fake_B: view1})
-                    view2 = np.reshape(view2, (batch_shape, self.n_regions, self.n_regions, 1))
-                    v2_upper = self.sess.run([self.upper_vector_B], feed_dict={self.fake_B: view2})
-                    v2_upper = np.reshape(v2_upper, (batch_shape, self.vectorized_graph))
-                    multiplex = np.concatenate((v1_upper, multi, v2_upper), axis=1)
-
-                    if batch_shape > 1:
-                        for k in range(batch_shape):
-                            multiplex_full = multiplex[k:k + 1, :]
-                            if k == 0:
-                                multiplex_final = multiplex_full
-                            else:
-                                multiplex_final = np.concatenate((multiplex_final, multiplex_full), axis=0)
-
-
-                    multiplex_final = np.array(multiplex_final)
-
-                    ####################################################################
-                    if errD_fake + errD_real > 0.5:
-                        for i in range(self.d_train_num):
-
-                            _, summary_str = self.sess.run([d_optim, self.d_sum], feed_dict={self.real_data: batch_graphs})
-                            self.writer.add_summary(summary_str, counter)
-
-                    for i in range(self.g_train_num):
-
-                        _, summary_str = self.sess.run([g_optim, self.g_sum], feed_dict={self.real_data: batch_graphs, self.X: multiplex_final,
-                                                                                         self.Y: label_idx})
-
-                        self.writer.add_summary(summary_str, counter)
-                    if idx % 4 == 0:
-                        for i in range(self.c_train_num):
-                            _, summary_str = self.sess.run([c_optim, self.classifier_loss_sum], feed_dict={self.X: multiplex_final,
-                                                                                                           self.Y: label_idx})
-
-                            self.writer.add_summary(summary_str, counter)
-                            errC = self.classifier_loss.eval({self.X: multiplex_final, self.Y: label_idx})
-
-                    errD_fake = self.d_loss_fake.eval({self.real_data: batch_graphs})
-                    errD_real = self.d_loss_real.eval({self.real_data: batch_graphs})
-                    errG = self.g_loss.eval({self.real_data: batch_graphs})
-
-                    errg = np.array(errD_fake + errD_real)
-                    errg = np.reshape(errg, (1))
-                    tab = np.concatenate((tab, errg), axis=0)
-                    ##################################################################################
-                    counter += 1
-                    print("Epoch: [%2d] [%4d/%4d] time: %4.4f, c_loss: %.8f, g_loss: %.8f, d_loss: %.8f" \
-                          % (epoch, idx, batch_idxs,
-                             time.time() - start_time, errC, errG, errD_fake + errD_real))
-                    if errG < best and errD_fake + errD_real < best_dis:
-                        self.save(args.checkpoint_dir, counter)
-                        best = errG
-                        best_dis = errD_fake + errD_real
-                        best_c = errC
-
-            init_op = tf.global_variables_initializer()
-            self.sess.run(init_op)
 
             # load testing input
             print("Loading testing graphs ...")
@@ -501,5 +416,4 @@ class graph2graph(object):
             accuracy_evaluation = accuracy.eval({X: x_data, Y: y_data})
             print("Accuracy: ", accuracy.eval({X: x_data, Y: y_data}))
         return accuracy_evaluation
-
 

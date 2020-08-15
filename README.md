@@ -27,7 +27,7 @@ Scikit-learn: [https://scikit-learn.org/stable/install.html](https://scikit-lear
 
 ABMT is coded in Python 3. GPU is not a requirement to run the code. However, for faster training, it is mandatory to install TensorFlow-gpu.
 
-To run ABMT please run main.py. If you require only to run a demo without training, please choose the configuration: &quot;No training / Yes testing&quot; when asked to do so. For complete training and testing please choose the configuration &quot;Yes training / Yes testing&quot;. If you are using the code for the first time please run training at least for one epoch to configure the weights.
+To run ABMT please run main.py. If you require to run a demo for the first time , please run main.py at least for 1 epoch then run demo.py.
 
 #
 
