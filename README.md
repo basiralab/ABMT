@@ -82,6 +82,8 @@ Holmes, Avram J., et al. &quot;Brain Genomics Superstruct Project initial data r
  }<br/>
 
 
+You can find the paper on ResearchGate: https://www.researchgate.net/publication/344189590_Adversarial_Brain_Multiplex_Prediction_From_a_Single_Brain_Network_with_Application_to_Gender_Fingerprinting
+
 # License
 
 Our code is released under MIT License (see LICENSE file for details).
