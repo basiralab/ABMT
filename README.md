@@ -75,12 +75,14 @@ Holmes, Avram J., et al. &quot;Brain Genomics Superstruct Project initial data r
  title={Adversarial Brain Multiplex Prediction From a Single Brain Network with Application to Gender Fingerprinting},<br/>
  author={Nebli, Ahmed and Rekik, Islem},<br/>
  journal={Medical Image Analysis},<br/>
- volume={??},<br/>
- pages={???},<br/>
+ volume={},<br/>
+ pages={},<br/>
  year={2020},<br/>
  publisher={Elsevier}<br/>
  }<br/>
 
+
+You can find the paper on ResearchGate: https://www.researchgate.net/publication/344189590_Adversarial_Brain_Multiplex_Prediction_From_a_Single_Brain_Network_with_Application_to_Gender_Fingerprinting
 
 # License
 
